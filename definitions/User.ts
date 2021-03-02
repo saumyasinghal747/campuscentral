@@ -1,17 +1,19 @@
 import { isValidEmail } from "./utilities";
-import School from "./School";
-import SchoolMember from "./SchoolMember";
-export default class User {
+import { v4 as generateUID } from 'uuid';
+import { db, usersDB } from "../plugins/mongo";
+import { SchoolMember } from "./internal";
+export class User {
     // internal thing for linking accs
-    uid: number;
+    uid: string;
+    _id:string;
     firstName: string;
     lastName: string;
     email: string; // an overall controlling email, but each SchoolMember can have a different email
     institutions: Array<SchoolMember>;
-    // cyclic attributes like courses
 
-    constructor({uid, firstName, lastName, email}){
+    constructor({uid, firstName, lastName, email}:{uid:string,firstName:string, lastName:string, email:string}){
         this.uid = uid;
+        this._id = uid;
         this.firstName = firstName;
         this.lastName = lastName;
         if (!isValidEmail(email)) throw new Error("Invalid email");
@@ -20,5 +22,31 @@ export default class User {
     }
 
     // add functions that communicate with database
+
+    static create({firstName, lastName, email}:{firstName:string, lastName:string, email:string}):User {
+        // email is required? indeed. first name and last name are required too.
+        // validate email!
+        if (!isValidEmail(email)) {
+
+            // should also check whether email is taken or not
+
+            throw new Error("Invalid email");
+        }
+
+        // generate a new uid.
+        const uid:string = generateUID();
+        const user =  new User({
+            uid, email, firstName, lastName
+        });
+        // create user object
+
+        // add it to the database.
+        db.collection('users').insertOne(user);
+
+        db.collection('users').indexes().then(console.log)
+        // return it
+        return user;
+
+    }
 
 }

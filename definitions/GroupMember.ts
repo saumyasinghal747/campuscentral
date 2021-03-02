@@ -1,7 +1,7 @@
-import User from "./User";
+
 import Group from "./Group";
 import School from "./School";
-import SchoolMember from "./SchoolMember";
+import {SchoolMember, User} from "./internal";
 
 export default class GroupMember {
     user: User;

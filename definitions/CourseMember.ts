@@ -1,6 +1,5 @@
-import User from "./User";
+import {User, SchoolMember} from "./internal";
 import School from "./School";
-import SchoolMember from "./SchoolMember";
 
 // So this is like Schoology's Enrollment
 

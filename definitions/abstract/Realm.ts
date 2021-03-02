@@ -1,4 +1,3 @@
 export default interface Realm {
-    //hmm
-    id:string;
+    id: string;
 }

@@ -1,4 +1,4 @@
-import User from "./User";
+import {User} from "./internal";
 import School from "./School";
 //import Course from "./Course";
 import Group from "./Group";
@@ -6,7 +6,7 @@ import CourseMember from "./CourseMember";
 
 // like schoology's enrollment
 
-export default class SchoolMember {
+export class SchoolMember {
 
     user: User;
     email: string;

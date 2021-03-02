@@ -1,6 +1,5 @@
 import Realm from "./abstract/Realm";
-import User from "./User";
-import SchoolMember from "./SchoolMember";
+import {SchoolMember, User} from "./internal";
 
 export default class School implements Realm {
     id: string;
@@ -16,6 +15,7 @@ export default class School implements Realm {
     fax: string;
     picture_url: string;
     members: Array<SchoolMember>;
+    // buildings, i guess
     constructor({id, title, address1, address2, city, state, postal_code, country, website, phone, fax, picture_url}) {
         this.id = id;
         this.title = title;
@@ -31,7 +31,7 @@ export default class School implements Realm {
         this.picture_url = picture_url;
     }
 
-    registerMember(user: User): SchoolMember{
+    registerMember(user: User): SchoolMember {
         // TODO: interactions with database to add user to memberlist or whatever
         return new SchoolMember(user, this);
     }

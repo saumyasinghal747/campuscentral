@@ -3,17 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "start:mongo": "sudo mongod --dbpath ./data/db --logpath ./data/mongo.log --fork"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "deep-email-validator": "^0.1.18",
     "ejs": "~2.6.1",
+    "exit-hook": "^2.2.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "mongodb": "^3.6.4",
+    "mongoose": "^5.11.15",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.7"
+    "node-cleanup": "^2.1.2",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
   }
 }
