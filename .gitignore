@@ -3,4 +3,4 @@ node_modules
 definitions/**/*.js
 **/.env
 **/*.log
-**/*.scss
+
