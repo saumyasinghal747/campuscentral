@@ -2,6 +2,16 @@ import { isValidEmail } from "./utilities";
 import { v4 as generateUID } from 'uuid';
 import { client } from "../plugins/mongo";
 import { SchoolMember } from "./internal";
+const nodemailer = require("nodemailer");
+
+const smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
+
 export class User {
     // internal thing for linking accs
     uid: string;
@@ -33,6 +43,10 @@ export class User {
         const user = new User({uid, firstName, lastName, email, passwordHash, verified});
         user.institutions = institutions;
         return user;
+    }
+
+    async sendEmailVerification(){
+        // lets hold off on the
     }
 
     async setPhotoURL(photoURL:string):Promise<void>{

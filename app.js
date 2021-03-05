@@ -1,11 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const path = require('path');
+const passport = require('passport')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const authentication = require('./plugins/auth');
 const sse = require('./plugins/sse')
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -17,7 +19,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: process.env.COOKIE_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./plugins/passport')
 
 app.use(sse) // server sent events for things like discussion boards and messages
 app.use(authentication); // custom authentication

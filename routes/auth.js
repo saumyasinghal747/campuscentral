@@ -1,16 +1,10 @@
 const {User} = require ("../definitions/internal");
 const express = require('express');
 const router = express.Router();
-const nodemailer = require("nodemailer");
+
 const { hashPassword, validatePassword } = require("../definitions/utilities");
 
-const smtpTransport = nodemailer.createTransport("SMTP",{
-    service: "Gmail",
-    auth: {
-        user: process.env.EMAIL_ADDRESS,
-        pass: process.env.EMAIL_PASSWORD
-    }
-});
+
 
 router.post('/signup', async function(req, res, next) {
     // create user lol

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "deep-email-validator": "^0.1.18",
@@ -17,6 +18,7 @@
     "exit-hook": "^2.2.1",
     "express": "~4.16.1",
     "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
@@ -25,6 +27,8 @@
     "node-cleanup": "^2.1.2",
     "nodemailer": "^6.5.0",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "password-hash": "^1.2.2",
     "uuid": "^8.3.2"
   },
