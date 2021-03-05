@@ -1,5 +1,6 @@
 import Realm from "./abstract/Realm";
 import {SchoolMember, User} from "./internal";
+import { v4 as generateUID } from 'uuid';
 
 export default class School implements Realm {
     id: string;
@@ -33,7 +34,11 @@ export default class School implements Realm {
 
     registerMember(user: User): SchoolMember {
         // TODO: interactions with database to add user to memberlist or whatever
-        return new SchoolMember(user, this);
+        const id = generateUID()
+        return new SchoolMember(user, this, id);
+        // so do we want a database for each kind of class?
+        // we need a database for schools, and a database for schoolmembers and course members. hmmm
+
     }
 
     isMember(user: User):boolean{

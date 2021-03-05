@@ -1,0 +1,36 @@
+<% if(typeof user === 'undefined') {
+  // In case we're displaying the 404 or 500 page and relevant code in the "custom" hook was not able to run,
+  // we make sure `me` exists.  This ensures we don't have to do `typeof` checks below.
+  var user = undefined;
+
+} %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Campus Central</title>
+    <link rel='stylesheet' href='/css/bootstrap.css' />
+  </head>
+  <body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Campus Central</a>
+      <div class="d-flex">
+        <% if (user) {%>
+          <button class="btn btn-outline-light mx-2" type="submit">Settings</button>
+      <form method="POST" action="/auth/signout">
+          <button class="btn btn-outline-light mx-2" type="submit">Sign out</button>
+      </form>
+        <% } else { %>
+            <a class="btn btn-outline-light mx-2" href="/signup">Sign up</a>
+            <button class="btn btn-outline-light mx-2" type="submit">Sign in</button>
+        <%}%>
+    </div>
+    </div>
+  </nav>
+    <div class="container mt-5">
+      <%- body %>
+    </div>
+
+
+  </body>
+</html>
